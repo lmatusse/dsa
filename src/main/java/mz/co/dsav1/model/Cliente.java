@@ -11,6 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Cliente 
@@ -19,29 +25,23 @@ public class Cliente
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(nullable = false, length = 60)
-	private String nome;
-	@Column(nullable = false, length = 40)
-	private String apelido;
+	private String nomeCompleto;
 	@Column(nullable = false, length = 13)
 	private String contacto;
-	@Column(nullable = false, length = 60)
-	private String cidade;
 	@Column(length = 60)
-	private String bairo;
+	private String email;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_projecto")
+	@Fetch(FetchMode.JOIN)
+	@Cascade(CascadeType.SAVE_UPDATE)
+	private Projecto projecto;
 	
-	private int num_casa;
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(name = "alocacao", joinColumns=@JoinColumn(name="id_cliente"),inverseJoinColumns = @JoinColumn(name="id_projeto")
-	
-			)
-	private Collection<Projecto> projetos;
-	public Cliente(String nome, String apelido, String contacto, String cidade, String bairo, int num_casa) {
-		this.nome = nome;
-		this.apelido = apelido;
+	public Cliente(String nomeCompleto, String contacto, String email, Projecto projecto) {
+		super();
+		this.nomeCompleto = nomeCompleto;
 		this.contacto = contacto;
-		this.cidade = cidade;
-		this.bairo = bairo;
-		this.num_casa = num_casa;
+		this.email = email;
+		this.projecto = projecto;
 	}
 	public Long getId() {
 		return id;
@@ -50,46 +50,26 @@ public class Cliente
 		this.id = id;
 	}
 	public String getNome() {
-		return nome;
+		return nomeCompleto;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nomeCompleto = nome;
 	}
-	public String getApelido() {
-		return apelido;
-	}
-	public void setApelido(String apelido) {
-		this.apelido = apelido;
-	}
+	
 	public String getContacto() {
 		return contacto;
 	}
 	public void setContacto(String contacto) {
 		this.contacto = contacto;
 	}
-	public String getCidade() {
-		return cidade;
-	}
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-	public String getBairo() {
-		return bairo;
-	}
-	public void setBairo(String bairo) {
-		this.bairo = bairo;
-	}
-	public int getNum_casa() {
-		return num_casa;
-	}
-	public void setNum_casa(int num_casa) {
-		this.num_casa = num_casa;
-	}
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", apelido=" + apelido + ", contacto=" + contacto + ", cidade="
-				+ cidade + ", bairo=" + bairo + ", num_casa=" + num_casa + "]";
+		return "Cliente [id=" + id + ", nomeCompleto=" + nomeCompleto + ", contacto=" + contacto + ", email=" + email
+				+ ", projecto=" + projecto + "]";
 	}
+	
+	
+	
 	
 	
 

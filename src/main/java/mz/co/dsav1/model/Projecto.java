@@ -32,13 +32,10 @@ public class Projecto {
 	
 	@Column(nullable = false)
 	private Date prazo, data_entrada;
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "alocacao", joinColumns = { @JoinColumn(name = "id_projeto") }, inverseJoinColumns = {
-	@JoinColumn(name = "id_cliente") })
+	@OneToMany(mappedBy = "projecto", fetch = FetchType.LAZY)
+	@Cascade(CascadeType.ALL)
 	private Collection<Cliente> clientes;
-	
-	@OneToMany(mappedBy = "projeto", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "projecto", fetch = FetchType.LAZY)
 	@Cascade(CascadeType.ALL)
 	private Collection<Modulo> modulo;
 

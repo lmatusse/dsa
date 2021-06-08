@@ -32,18 +32,18 @@ private String descricao;
 @JoinColumn(name="id_projeto")
 @Fetch(FetchMode.JOIN)
 @Cascade(CascadeType.SAVE_UPDATE)
-private Projecto projeto;
+private Projecto projecto;
 @OneToMany(mappedBy = "modulo", fetch = FetchType.LAZY)
 @Cascade(CascadeType.ALL)
 private Collection<Funcionalidade> funcionalidade;
 @OneToMany(mappedBy = "modulo", fetch = FetchType.LAZY)
 @Cascade(CascadeType.ALL)
 private Collection<CasoDeUso> casoDeUsos;
-public Modulo(String nome, String descricao, Projecto projeto) {
+public Modulo(String nome, String descricao, Projecto projecto) {
 	super();
 	this.nome = nome;
 	this.descricao = descricao;
-	this.projeto = projeto;
+	this.projecto = projecto;
 }
 public Long getId() {
 	return id;
@@ -63,11 +63,11 @@ public String getDescricao() {
 public void setDescricao(String descricao) {
 	this.descricao = descricao;
 }
-public Projecto getProjeto() {
-	return projeto;
+public Projecto getProjecto() {
+	return projecto;
 }
-public void setProjeto(Projecto projeto) {
-	this.projeto = projeto;
+public void setProjecto(Projecto projecto) {
+	this.projecto = projecto;
 }
 
 	

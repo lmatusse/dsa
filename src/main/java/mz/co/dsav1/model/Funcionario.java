@@ -19,27 +19,19 @@ public class Funcionario {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		@Column(nullable = false, length = 60)
-		private String nome;
-		@Column(nullable = false, length = 40)
-		private String apelido;
+		private String nomeCompleto;
 		@Column(nullable = false, length = 13)
 		private String contacto;
 		@Column(nullable = false, length = 60)
-		private String cidade;
-		@Column(length = 60)
-		private String bairo;
-		
-		private int num_casa;
 		@ManyToMany(fetch=FetchType.LAZY)
 		@JoinTable(name = "tarefa", joinColumns=@JoinColumn(name="id_funcionario"),inverseJoinColumns = @JoinColumn(name="id_actividade"))
 		private Collection<Actividade> actividade;
-		public Funcionario(String nome, String apelido, String contacto, String cidade, String bairo, int num_casa) {
-			this.nome = nome;
-			this.apelido = apelido;
+		
+		public Funcionario(String nomeCompleto, String contacto, Collection<Actividade> actividade) {
+			super();
+			this.nomeCompleto = nomeCompleto;
 			this.contacto = contacto;
-			this.cidade = cidade;
-			this.bairo = bairo;
-			this.num_casa = num_casa;
+			this.actividade = actividade;
 		}
 		public Long getId() {
 			return id;
@@ -48,46 +40,25 @@ public class Funcionario {
 			this.id = id;
 		}
 		public String getNome() {
-			return nome;
+			return nomeCompleto;
 		}
 		public void setNome(String nome) {
-			this.nome = nome;
+			this.nomeCompleto = nome;
 		}
-		public String getApelido() {
-			return apelido;
-		}
-		public void setApelido(String apelido) {
-			this.apelido = apelido;
-		}
+		
 		public String getContacto() {
 			return contacto;
 		}
 		public void setContacto(String contacto) {
 			this.contacto = contacto;
 		}
-		public String getCidade() {
-			return cidade;
-		}
-		public void setCidade(String cidade) {
-			this.cidade = cidade;
-		}
-		public String getBairo() {
-			return bairo;
-		}
-		public void setBairo(String bairo) {
-			this.bairo = bairo;
-		}
-		public int getNum_casa() {
-			return num_casa;
-		}
-		public void setNum_casa(int num_casa) {
-			this.num_casa = num_casa;
-		}
 		@Override
 		public String toString() {
-			return "Cliente [id=" + id + ", nome=" + nome + ", apelido=" + apelido + ", contacto=" + contacto + ", cidade="
-					+ cidade + ", bairo=" + bairo + ", num_casa=" + num_casa + "]";
+			return "Funcionario [id=" + id + ", nomeCompleto=" + nomeCompleto + ", contacto=" + contacto
+					+ ", actividade=" + actividade + "]";
 		}
+		
+		
 		
 		
 

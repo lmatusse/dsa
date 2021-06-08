@@ -10,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tarefa")
-public class Tarefa {
+public class ActividadeDoFuncionario {
 	@EmbeddedId
 	private ActividadeFuncionarioPK chaveComposta;
 	@Column(nullable = false)
