@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 public abstract class AbstractDAO<T, PK extends Serializable> {
-// T =entidade pk é  a chave
+//T =entidade pk é  a chave
 	@SuppressWarnings("unchecked")
 	private final Class<T> entityClass = 
 			(Class<T>) ( (ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];

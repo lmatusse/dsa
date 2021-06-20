@@ -10,6 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.JoinColumn;
 @Entity
 public class Funcionario {
@@ -26,7 +33,16 @@ public class Funcionario {
 		@ManyToMany(fetch=FetchType.LAZY)
 		@JoinTable(name = "tarefa", joinColumns=@JoinColumn(name="id_funcionario"),inverseJoinColumns = @JoinColumn(name="id_actividade"))
 		private Collection<Actividade> actividade;
-		
+		@ManyToOne(fetch = FetchType.LAZY)
+		@JoinColumn(name="id_sector")
+		@Fetch(FetchMode.JOIN)
+		@Cascade(CascadeType.SAVE_UPDATE)
+		private Sector sector;
+		@ManyToOne(fetch = FetchType.LAZY)
+		@JoinColumn(name="id_categoria")
+		@Fetch(FetchMode.JOIN)
+		@Cascade(CascadeType.SAVE_UPDATE)
+		private Categoria categoria;
 		public Funcionario(String nomeCompleto, String contacto, Collection<Actividade> actividade) {
 			super();
 			this.nomeCompleto = nomeCompleto;

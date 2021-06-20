@@ -25,6 +25,7 @@ public class Sector {
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Departamento departamento;
+	
 	public Sector(String nome, Departamento departamento) {
 		super();
 		this.nome = nome;

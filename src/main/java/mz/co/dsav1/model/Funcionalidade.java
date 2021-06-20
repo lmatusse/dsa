@@ -34,9 +34,11 @@ private String dependencia;
 @Fetch(FetchMode.JOIN)
 @Cascade(CascadeType.SAVE_UPDATE)
 private Modulo modulo;
+/*
 @OneToMany(mappedBy = "funcionalidade", fetch = FetchType.LAZY)
 @Cascade(CascadeType.ALL)
 private Collection<CasoDeUso> casoDeUsos;
+*/
 public Funcionalidade(String nome, Date data_recolha, String prioridade, String dependencia, Modulo modulo) {
 	super();
 	this.nome = nome;

@@ -13,6 +13,7 @@ public class Departamento {
 private Long id;
 	@Column(nullable = false, length = 60)
 private String nome;
+	
 public Departamento(String nome) {
 	
 	this.nome = nome;

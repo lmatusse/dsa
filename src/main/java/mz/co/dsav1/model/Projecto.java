@@ -1,6 +1,7 @@
 package mz.co.dsav1.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -30,8 +31,12 @@ public class Projecto {
 	@Column(nullable = false, length = 250)
 	private String descricao;
 	
-	@Column(nullable = false)
-	private Date prazo, data_entrada;
+	
+	@Column(name= "data_entrada", nullable = false, columnDefinition = "DATE")
+	private LocalDate data_entrada;
+	
+	@Column(name = "prazo", nullable = false, columnDefinition = "DATE")
+	private Date prazo;
 	@OneToMany(mappedBy = "projecto", fetch = FetchType.LAZY)
 	@Cascade(CascadeType.ALL)
 	private Collection<Cliente> clientes;
@@ -39,12 +44,12 @@ public class Projecto {
 	@Cascade(CascadeType.ALL)
 	private Collection<Modulo> modulo;
 
-	public Projecto(String designacao, String descricao, Date prazo, Date data_entrada) {
+	/*public Projecto(String designacao, String descricao, LocalDate prazo, LocalDate data_entrada) {
 		this.designacao = designacao;
 		this.descricao = descricao;
 		this.prazo = prazo;
 		this.data_entrada = data_entrada;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
@@ -78,11 +83,11 @@ public class Projecto {
 		this.prazo = prazo;
 	}
 
-	public Date getData_entrada() {
+	public LocalDate getData_entrada() {
 		return data_entrada;
 	}
 
-	public void setData_entrada(Date data_entrada) {
+	public void setData_entrada(LocalDate data_entrada) {
 		this.data_entrada = data_entrada;
 	}
 

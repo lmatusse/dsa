@@ -22,22 +22,24 @@ public class CasoDeUso
 @Column(nullable = false, unique = true, length = 60)
 	private String nome;
 	private String prioridade;
+	/*
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_funcionalidade")
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Funcionalidade funcionalidade;
+	*/
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_modulo")
 	@Fetch(FetchMode.JOIN)
 	@Cascade(CascadeType.SAVE_UPDATE)
 	private Modulo modulo;
 	
-	public CasoDeUso(String nome, String prioridade, Funcionalidade funcionalidade, Modulo modulo) {
+	public CasoDeUso(String nome, String prioridade, Modulo modulo) {
 		super();
 		this.nome = nome;
 		this.prioridade = prioridade;
-		this.funcionalidade = funcionalidade;
+		//this.funcionalidade = funcionalidade;
 		this.modulo = modulo;
 	}
 	public Long getId() {
@@ -58,12 +60,12 @@ public class CasoDeUso
 	public void setPrioridade(String prioridade) {
 		this.prioridade = prioridade;
 	}
-	public Funcionalidade getRequisitoFuncional() {
+	/*public Funcionalidade getRequisitoFuncional() {
 		return funcionalidade;
 	}
 	public void setRequisitoFuncional(Funcionalidade funcionalidade) {
 		this.funcionalidade = funcionalidade;
-	}
+	}*/
 	public Modulo getModulo() {
 		return modulo;
 	}
