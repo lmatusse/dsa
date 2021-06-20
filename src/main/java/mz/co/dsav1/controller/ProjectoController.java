@@ -18,12 +18,12 @@ public class ProjectoController {
 	@Autowired
 	private ProjectoService service;
 @GetMapping("/cadastrar") // esta no home no link
-public String cadastrar()
+public ModelAndView cadastrar()
 {
 	//ModelMap model =new ModelMap();
-	//return new ModelAndView("projecto/cadastro").addObject("projectos",service.buscarTodos());
+	return new ModelAndView("projecto/cadastro").addObject("projectos",service.buscarTodos());
 	//model.addAttribute("projectos", service.buscarTodos());
-	return "projecto/cadastro"; //a pasta onde esta o file.
+	//return "projecto/cadastro"; //a pasta onde esta o file.
 }
 
 
